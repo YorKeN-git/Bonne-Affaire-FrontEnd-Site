@@ -1,0 +1,27 @@
+.produit {
+    text-align: center;
+    border: solid 1px black;
+    height: 300px;
+    width: 250px;
+    margin: 5px;
+    display: inline-block;
+}
+
+img {
+    height: 150px;
+    width: 240px;
+}
+
+.produitDispo {
+    color: green;
+}
+
+.produitIndispo {
+    color: red;
+}
+
+.loader {
+    margin-left: auto;
+    margin-right: auto;
+    /* width: ...; */
+}

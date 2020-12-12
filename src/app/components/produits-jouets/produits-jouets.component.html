@@ -1,0 +1,22 @@
+<div class="container">
+    <mat-spinner *ngIf="loading" class="loader"></mat-spinner>
+    <h1>Résultat pour la recherche : {{categorie}} <small>({{nbProduit}} résultats)</small></h1>
+    <div class="alert alert-info" role="alert" *ngIf="pasdeProduit">
+        Il n'y a pas de produit à vendre dans cette catégorie.
+    </div>
+    <div>
+        <div *ngFor="let produit of produits" class="produit">
+            <img src={{produit.photoPrincipal}} title={{produit.description}} srcset="">
+            <div *ngIf="(produit.quantity > 0);else produitEpuise">
+                <p><strong>{{produit.prix}} €  </strong> <small class="produitDispo">en stock</small></p>
+                <p>{{produit.nom}}</p>
+            </div>
+            <ng-template #produitEpuise>
+                <p><small class="produitIndispo">indisponible</small></p>
+                <p>{{produit.nom}} </p>
+            </ng-template>
+            <button (click)="afficherProduit(produit._id)" class="btn btn-info">Consulter l'article</button>
+        </div>
+    </div>
+
+</div>

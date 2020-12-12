@@ -1,0 +1,12 @@
+<div class="container">
+    <mat-spinner *ngIf="loading" class="loader"></mat-spinner>
+    <h1>{{produit.nom}}</h1>
+    <p><small>Ref : {{produit._id}}</small></p>
+    <img src={{produit.photoPrincipal}} alt="">
+    <div class="partieDroite">
+        <div class="partieGauche">
+            <h3>{{produit.prix}} €</h3>
+        </div>
+    </div>
+
+</div>

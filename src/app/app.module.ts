@@ -6,17 +6,33 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { AcceuilComponent } from './pages/acceuil/acceuil.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
+import { ProduitsAutresComponent } from './components/produits-autres/produits-autres.component';
+import { HttpClientModule } from '@angular/common/http';
+import { AfficherProduitComponent } from './components/afficher-produit/afficher-produit.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { ProduitsJouetsComponent } from './components/produits-jouets/produits-jouets.component';
+import { ProduitsHighTechComponent } from './components/produits-high-tech/produits-high-tech.component';
+import { ProduitsGrosElectromenagerComponent } from './components/produits-gros-electromenager/produits-gros-electromenager.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     AcceuilComponent,
-    CarouselComponent
+    CarouselComponent,
+    ProduitsAutresComponent,
+    AfficherProduitComponent,
+    ProduitsJouetsComponent,
+    ProduitsHighTechComponent,
+    ProduitsGrosElectromenagerComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
