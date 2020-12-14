@@ -16,6 +16,7 @@ import { ProduitsHighTechComponent } from './components/produits-high-tech/produ
 import { ProduitsGrosElectromenagerComponent } from './components/produits-gros-electromenager/produits-gros-electromenager.component';
 import { CreationCompteComponent } from './components/creation-compte/creation-compte.component';
 import { ConnexionUserComponent } from './components/connexion-user/connexion-user.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,8 @@ import { ConnexionUserComponent } from './components/connexion-user/connexion-us
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     MatProgressSpinnerModule
   ],
