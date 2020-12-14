@@ -1,7 +1,8 @@
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
-body {
+
+/* body {
     background-color: #FFFACD;
-}
+} */
 
 html,
 body {

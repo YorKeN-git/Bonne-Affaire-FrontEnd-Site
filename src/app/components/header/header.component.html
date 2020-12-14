@@ -1,8 +1,8 @@
 <header>
     <div class="container">
         <div class="row">
-            <h1 class="col">Bonne-Affaire</h1>
-            <div class="col-6">
+            <h1 class="col-2" [routerLink]="['/acceuil']" routerLinkActive="router-link-active">Bonne-Affaire</h1>
+            <div class="col-4">
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="Rechercher un produit..." aria-describedby="rechercherProduit">
                     <button class="btn btn-outline-light" type="button" id="rechercherProduit"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -12,14 +12,32 @@
                 </div>
             </div>
             <div class="col">
-                <button type="button" class="btn btn-outline-light">Mon compte <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <!-- <button type="button" class="btn btn-outline-light">Mon compte <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M10 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm6 5c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
-              </svg></button>
+              </svg></button> -->
+                <div class="dropdown">
+                    <button class="btn btn-outline-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Mon Compte <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M10 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm6 5c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                  </svg>
+                </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <div>
+                            <p>Bonjour, {{user.prenom}}</p>
+                            <a class="dropdown-item" href="#">Mon compte</a>
+                        </div>
+                        <hr>
+                        <div>
+                            <a class="dropdown-item" [routerLink]="['/connexion-User']" routerLinkActive="router-link-active">Identifiez-vous</a>
+                            <a class="dropdown-item" [routerLink]="['/creation-Compte']" routerLinkActive="router-link-active"><small>Pas encore de compte ?! C'est par ici ! </small></a>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="col">
                 <button type="button" class="btn btn-outline-light">Mon Panier <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cart4" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
-              </svg></button>
+              </svg><span class="badge badge-pill badge-danger">0</span></button>
             </div>
         </div>
         <div class="row">

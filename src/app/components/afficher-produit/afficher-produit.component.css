@@ -16,3 +16,17 @@ img {
 .partieGauche {
     float: left;
 }
+
+.produitDispo {
+    color: green;
+}
+
+.produitIndispo {
+    color: red;
+}
+
+
+/* 
+.partieBasse {
+    
+} */

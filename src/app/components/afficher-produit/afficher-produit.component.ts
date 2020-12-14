@@ -23,7 +23,7 @@ export class AfficherProduitComponent implements OnInit {
         this.produitService.getProduitById(params.id).then(
           (produit: Produit) => {
             this.produit = produit;
-            console.log(this.produit);
+            //console.log(this.produit);
             
             });
             // this.imagePreview = produit.photoPrincipal;
@@ -32,5 +32,8 @@ export class AfficherProduitComponent implements OnInit {
         );
   }
   
+  ajouterPanier(produit: Produit){
+    console.log(produit);
+  }
 
 }

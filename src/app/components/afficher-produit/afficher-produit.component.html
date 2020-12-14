@@ -1,12 +1,26 @@
 <div class="container">
     <mat-spinner *ngIf="loading" class="loader"></mat-spinner>
-    <h1>{{produit.nom}}</h1>
-    <p><small>Ref : {{produit._id}}</small></p>
-    <img src={{produit.photoPrincipal}} alt="">
-    <div class="partieDroite">
-        <div class="partieGauche">
-            <h3>{{produit.prix}} €</h3>
+    <div class="row">
+        <div class="col">
+            <h1>{{produit.nom}}</h1>
+            <p><small>Ref : {{produit._id}}</small></p>
+        </div>
+        <div class="col-2">
+            <div *ngIf="(produit.quantity > 0);else produitEpuise">
+                <h4><strong>{{produit.prix}} €  </strong> <small class="produitDispo">en stock</small></h4>
+                <button (click)=ajouterPanier(produit) class="btn btn-info">Ajouter au panier</button>
+            </div>
+            <ng-template #produitEpuise>
+                <p><small class="produitIndispo">indisponible</small></p>
+            </ng-template>
         </div>
     </div>
-
+    <hr>
+    <img src={{produit.photoPrincipal}} alt="">
+    <div class="row">
+        <div class="col">
+            <h4>Description :</h4>
+            <p>{{produit.description}}</p>
+        </div>
+    </div>
 </div>

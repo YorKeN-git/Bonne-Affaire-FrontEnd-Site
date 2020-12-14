@@ -47,4 +47,8 @@ export class ProduitService {
     });
   }
 
+  addProduitPanier(produit: Produit){
+    //Ajoute le produit au panier (local storage)
+  }
+
 }
