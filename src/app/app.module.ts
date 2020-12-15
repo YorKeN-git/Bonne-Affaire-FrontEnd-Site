@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -16,7 +15,7 @@ import { ProduitsHighTechComponent } from './components/produits-high-tech/produ
 import { ProduitsGrosElectromenagerComponent } from './components/produits-gros-electromenager/produits-gros-electromenager.component';
 import { CreationCompteComponent } from './components/creation-compte/creation-compte.component';
 import { ConnexionUserComponent } from './components/connexion-user/connexion-user.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @NgModule({
   declarations: [

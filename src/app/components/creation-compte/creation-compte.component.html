@@ -13,48 +13,74 @@
     <form [formGroup]="creationCompteForm">
         <div class="row">
             <div class="form-group col-md-6">
-                <label for="inputPrenom">Prénom : </label>
-                <input type="text" class="form-control" placeholder="John" id="inputPrenom" formControlName="prenom">
+                <label>Prénom : </label>
+                <input type="text" class="form-control" formControlName="prenom" placeholder="John" [ngClass]="{ 'is-invalid': isSubmit && f.prenom.errors }" />
+                <div *ngIf="isSubmit && f.prenom.errors" class="invalid-feedback">
+                    <div *ngIf="f.prenom.errors.required">Prénom est requis</div>
+                </div>
+
             </div>
             <div class="form-group col-md-6">
-                <label for="inputNom">Nom : </label>
-                <input type="text" class="form-control" placeholder="Doe" id="inputNom" formControlName="nom">
+                <label>Nom : </label>
+                <input type="text" class="form-control" placeholder="Doe" id="inputNom" formControlName="nom" [ngClass]="{ 'is-invalid': isSubmit && f.nom.errors }">
+                <div *ngIf="isSubmit && f.nom.errors" class="invalid-feedback">
+                    <div *ngIf="f.nom.errors.required">Nom est requis</div>
+                </div>
             </div>
         </div>
         <div class="row">
             <div class="form-group col-md-4">
-                <label for="inputEmail">e-mail : </label>
-                <input type="email" class="form-control" placeholder="johndoe@exemple.com" id="inputEmail" formControlName="email">
+                <label>e-mail : </label>
+                <input type="email" class="form-control" placeholder="johndoe@exemple.com" id="inputEmail" formControlName="email" [ngClass]="{ 'is-invalid': isSubmit && f.email.errors }">
+                <div *ngIf="isSubmit && f.email.errors" class="invalid-feedback">
+                    <div *ngIf="f.email.errors.required">E-mail est requis</div>
+                    <div *ngIf="f.email.errors.email">L'adresse saisie n'est pas une adresse e-mail</div>
+                </div>
             </div>
             <div class="form-group col-md-4">
-                <label for="inputMotDePasse">Mot de passe : </label>
-                <input type="password" class="form-control" id="inputMotDePasse" formControlName="mdp">
-                <!-- <div *ngIf="f.mdp.errors.minlength">Password must be at least 6 characters</div> -->
+                <label>Mot de passe : </label>
+                <input type="password" class="form-control" id="inputMotDePasse" formControlName="mdp" [ngClass]="{ 'is-invalid': isSubmit && f.mdp.errors }">
+                <div class="invalid-feedback">
+                    <div *ngIf="f.mdp.errors.required">Mot de passe est requis</div>
+                    <div *ngIf="f.mdp.errors.minlength">Le mot de passe doit contenir au minimum 6 caractères</div>
+                </div>
             </div>
             <div class="form-group col-md-4">
-                <label for="inputMotDePasseConfirmer">Confirmer le mot de passe : </label>
-                <input type="password" class="form-control" id="inputMotDePasseConfirmer" formControlName="mdpConfirmer">
-                <!-- <div *ngIf="f.mdpConfirmer.errors.mustMatch">Passwords must match</div> -->
+                <label>Confirmer le mot de passe : </label>
+                <input type="password" class="form-control" id="inputMotDePasseConfirmer" formControlName="mdpConfirmer" [ngClass]="{ 'is-invalid': isSubmit && f.mdpConfirmer.errors }">
+                <div class="invalid-feedback">
+                    <div *ngIf="f.mdpConfirmer.errors.required">Confirmer mot de passe est requis</div>
+                    <div *ngIf="f.mdpConfirmer.errors.mustMatch">Non concordance des mots de passe</div>
+                </div>
             </div>
         </div>
         <div class="form-group">
-            <label for="inputAdresse">Adresse : </label>
-            <input type="text" class="form-control" placeholder="1 Rue de Paris" id="inputAdresse" formControlName="adresse">
+            <label>Adresse : </label>
+            <input type="text" class="form-control" placeholder="1 Rue de Paris" id="inputAdresse" formControlName="adresse" [ngClass]="{ 'is-invalid': isSubmit && f.adresse.errors }">
+            <div *ngIf="isSubmit && f.adresse.errors" class="invalid-feedback">
+                <div *ngIf="f.mdpConfirmer.errors.required">Adresse est requis</div>
+            </div>
         </div>
         <div class="row">
             <div class="form-group col-md-6">
-                <label for="inputCP">Code postal : </label>
-                <input type="number" class="form-control" placeholder="75000" id="inputCP" formControlName="CP">
+                <label>Code postal : </label>
+                <input type="number" class="form-control" placeholder="75000" id="inputCP" formControlName="CP" [ngClass]="{ 'is-invalid': isSubmit && f.CP.errors }">
+                <div *ngIf="isSubmit && f.CP.errors" class="invalid-feedback">
+                    <div *ngIf="f.CP.errors.required">Code postal est requis</div>
+                </div>
             </div>
             <div class="form-group col-md-6">
                 <label for="inputVille">Ville : </label>
-                <input type="text" class="form-control" placeholder="Paris" id="inputVille" formControlName="ville">
+                <input type="text" class="form-control" placeholder="Paris" id="inputVille" formControlName="ville" [ngClass]="{ 'is-invalid': isSubmit && f.ville.errors }">
+                <div *ngIf="isSubmit && f.ville.errors" class="invalid-feedback">
+                    <div *ngIf="f.ville.errors.required">Ville est requis</div>
+                </div>
             </div>
         </div>
         <div class="row">
             <div class="col"></div>
             <div class="col">
-                <button type="submit" class="btn btn-primary" (click)="creerCompte()" [disabled]="creationCompteForm.invalid">Créer mon compte</button>
+                <button type="submit" class="btn btn-primary" (click)="creerCompte()">Créer mon compte</button>
                 <button class="btn btn-danger" [routerLink]="['/acceuil']" routerLinkActive="router-link-active">Annuler</button>
             </div>
             <div class="col"></div>

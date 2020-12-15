@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
-import { concordanceMdp } from './concordanceMdp';
+import { MustMatch } from './must-match.validators';
 
 @Component({
   selector: 'app-creation-compte',
@@ -11,6 +11,7 @@ import { concordanceMdp } from './concordanceMdp';
 export class CreationCompteComponent implements OnInit {
 
   creationCompteForm: FormGroup;
+  isSubmit: boolean = false;
   loading: boolean = false;
   error: boolean = false;
   errorMessage: string;
@@ -25,22 +26,29 @@ export class CreationCompteComponent implements OnInit {
       prenom: ['', Validators.required],
       nom: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      mdp: ['', Validators.required, Validators.minLength(6)],
+      mdp: ['', [Validators.required, Validators.minLength(6)]],
       mdpConfirmer: ['', Validators.required],
       adresse: ['', Validators.required],
-      CP: [0, Validators.required],
+      CP: ['', Validators.required],
       ville: ['', Validators.required]
-    // }, {
-      // validator: concordanceMdp('mdp', 'mdpConfirmer')
-    });
+    }, {
+      validator: MustMatch('mdp', 'mdpConfirmer')
+  });
   
   }
 
-  //get f() { return this.creationCompteForm.controls; }
+  get f() { return this.creationCompteForm.controls; }
 
   creerCompte(){
     this.loading = true; 
+    this.isSubmit = true; 
     this.error = false;
+    if(this.creationCompteForm.invalid){
+      this.loading = false; 
+      console.log("Invalide form");
+      return;
+    }else{
+      //Recuperd les données du formulaire. 
     const prenom = this.creationCompteForm.get('prenom').value;
     const nom = this.creationCompteForm.get('nom').value; 
     const email = this.creationCompteForm.get('email').value;
@@ -63,5 +71,7 @@ export class CreationCompteComponent implements OnInit {
           this.errorMessage = error.message; 
         }
       );
+    }
+    
   }
 }
