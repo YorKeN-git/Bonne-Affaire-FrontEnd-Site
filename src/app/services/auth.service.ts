@@ -46,7 +46,7 @@ export class AuthService {
       return new Promise((resolve, reject) => {
         this.http.post(
           'http://localhost:3000/api/auth/login',
-          { email: email, password: mdp })
+          { email: email, mdp: mdp })
           .subscribe(
             (authData: { token: string, userId: string }) => {
               this.token = authData.token;
@@ -59,6 +59,19 @@ export class AuthService {
               
             }
           );
+      });
+    }
+
+    getUserById(id: string){
+      return new Promise((resolve, reject) => {
+        this.http.get('http://localhost:3000/api/user/' + id).subscribe(
+          (response) => {
+            resolve(response);
+          },
+          (error) => {
+            reject(error);
+          }
+        );
       });
     }
 

@@ -22,12 +22,14 @@
                   </svg>
                 </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <div>
+                        <div *ngIf="isAuth">
                             <p>Bonjour, {{user.prenom}}</p>
                             <a class="dropdown-item" href="#">Mon compte</a>
+                            <hr>
+                            <button type="button" class="btn btn-danger btn-block">Deconnexion</button>
                         </div>
-                        <hr>
-                        <div>
+
+                        <div *ngIf="!isAuth">
                             <a class="dropdown-item" [routerLink]="['/connexion-User']" routerLinkActive="router-link-active">Identifiez-vous</a>
                             <a class="dropdown-item" [routerLink]="['/creation-Compte']" routerLinkActive="router-link-active"><small>Pas encore de compte ?! C'est par ici ! </small></a>
                         </div>

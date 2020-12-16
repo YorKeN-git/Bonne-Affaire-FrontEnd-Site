@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-connexion-user',
@@ -8,17 +10,36 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class ConnexionUserComponent implements OnInit {
 
-  connexionUser: FormGroup;
-  isSubmit: boolean = false;
+  connexionUserForm: FormGroup;
+  errorMessage: string;
   loading: boolean = false;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder,
+              private auth: AuthService,
+              private router: Router ) { }
 
   ngOnInit() {
-    this.connexionUser = this.formBuilder.group({
+    this.connexionUserForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       mdp: ['', Validators.required]
     });
+  }
+
+  connexionUser(){
+    this.loading = true;
+    const email = this.connexionUserForm.get('email').value;
+    const mdp = this.connexionUserForm.get('mdp').value;
+    this.auth.connnexionUser(email, mdp).then(
+      () => {
+        this.loading = false;
+        this.router.navigate(['/acceuil']);
+      }
+    ).catch(
+      (error) => {
+        this.loading = false;
+        this.errorMessage = error.message;
+      }
+    );
   }
 
 }
