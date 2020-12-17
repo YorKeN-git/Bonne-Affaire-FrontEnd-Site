@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { User } from '../modeles/user';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,7 @@ export class AuthService {
   token: string;
   userId: string;
   messageCreationOK: string;
+  userAuth: User;
 
   constructor(private http: HttpClient) { }
 
@@ -64,7 +66,7 @@ export class AuthService {
 
     getUserById(id: string){
       return new Promise((resolve, reject) => {
-        this.http.get('http://localhost:3000/api/user/' + id).subscribe(
+        this.http.get('http://localhost:3000/api/auth/user/' + id).subscribe(
           (response) => {
             resolve(response);
           },

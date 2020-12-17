@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Produit } from 'src/app/modeles/produits';
 import { ProduitService } from 'src/app/services/produit.service';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-afficher-produit',
@@ -33,7 +34,8 @@ export class AfficherProduitComponent implements OnInit {
   }
   
   ajouterPanier(produit: Produit){
-    console.log(produit);
+    this.produitService.addProduitPanier(produit);
+    
   }
 
 }
