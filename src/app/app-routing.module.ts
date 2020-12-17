@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AfficherPanierComponent } from './components/afficher-panier/afficher-panier.component';
 import { AfficherProduitComponent } from './components/afficher-produit/afficher-produit.component';
 import { ConnexionUserComponent } from './components/connexion-user/connexion-user.component';
 import { CreationCompteComponent } from './components/creation-compte/creation-compte.component';
@@ -19,7 +20,8 @@ const routes: Routes = [
   {path: 'jouets', component: ProduitsJouetsComponent},
   {path: 'High-Tech', component: ProduitsHighTechComponent},
   {path: 'Gros-Electromenager', component: ProduitsGrosElectromenagerComponent},
-  {path: 'produit/:id', component: AfficherProduitComponent}
+  {path: 'produit/:id', component: AfficherProduitComponent},
+  {path: 'mon-Panier', component: AfficherPanierComponent}
 ];
 
 @NgModule({

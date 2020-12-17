@@ -16,6 +16,7 @@ import { ProduitsGrosElectromenagerComponent } from './components/produits-gros-
 import { CreationCompteComponent } from './components/creation-compte/creation-compte.component';
 import { ConnexionUserComponent } from './components/connexion-user/connexion-user.component';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AfficherPanierComponent } from './components/afficher-panier/afficher-panier.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
     ProduitsGrosElectromenagerComponent,
     CreationCompteComponent,
     ConnexionUserComponent,
+    AfficherPanierComponent,
   ],
   imports: [
     BrowserModule,
