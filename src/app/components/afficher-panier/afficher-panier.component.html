@@ -1,6 +1,10 @@
 <div class="container">
-    <table class="table">
-        <caption><strong>Total :  </strong></caption>
+    <mat-spinner *ngIf="loading" class="loader"></mat-spinner>
+    <div class="alert alert-info" role="alert" *ngIf="isPanierVide">
+        <p class="text-center">Votre panier est actuellement vide !<button [routerLink]="['/acceuil']" routerLinkActive="router-link-active" class="btn btn-outline-info">Commencer mes achats</button></p>
+    </div>
+    <table class="table" *ngIf="!isPanierVide">
+        <caption><strong> <h3>Total : {{total}} €</h3></strong></caption>
         <thead>
             <tr>
                 <th scope="col">#</th>
@@ -11,11 +15,11 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td><input class="form-control" type="number" value="1"></td>
-                <td></td>
+            <tr *ngFor="let produit of panier">
+                <th scope="row"><img src={{produit.photoPrincipal}} alt="" srcset=""></th>
+                <td>{{produit.nom}}</td>
+                <td><input class="form-control" type="number" value={{produit.quantiteProduitCmd}} max="{{produit.quantity}}" (change)="onChangeInput($event, produit)"></td>
+                <td>{{produit.totalProduitCmd}}</td>
                 <td><button type="button" class="btn btn-danger"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z"/>
                   </svg></button></td>

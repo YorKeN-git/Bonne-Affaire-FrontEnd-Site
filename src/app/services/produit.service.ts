@@ -55,10 +55,14 @@ export class ProduitService {
   addProduitPanier(produit: Produit){
     this.changementPanier$.next(true);
     if(this.nbArticle == 0){
+      produit.quantiteProduitCmd = 1;
+      produit.totalProduitCmd = produit.prix;
       this.panier[0] = produit;
       //console.log(this.panier$[0]);
       this.nbArticle++;
     }else{
+      produit.quantiteProduitCmd = 1;
+      produit.totalProduitCmd = produit.prix;
       this.panier[this.nbArticle] = produit;
       //console.log(this.panier$);
       this.nbArticle++;

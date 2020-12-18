@@ -6,5 +6,7 @@ export class Produit {
     photoPrincipal: string;
     prix: number;
     quantity: number;
+    quantiteProduitCmd: number = 1;
+    totalProduitCmd: number;
 }
 
