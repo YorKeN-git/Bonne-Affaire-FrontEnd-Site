@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Commande } from 'src/app/modeles/commande';
 import { Produit } from 'src/app/modeles/produits';
+import { User } from 'src/app/modeles/user';
+import { AuthService } from 'src/app/services/auth.service';
 import { ProduitService } from 'src/app/services/produit.service';
 
 @Component({
@@ -9,6 +11,7 @@ import { ProduitService } from 'src/app/services/produit.service';
   styleUrls: ['./afficher-panier.component.css']
 })
 export class AfficherPanierComponent implements OnInit {
+
   public panier: Produit[];
   isPanierVide: boolean; 
   loading: boolean;
@@ -16,7 +19,14 @@ export class AfficherPanierComponent implements OnInit {
   prixProduitCommande: number; 
   commande: Commande; 
   total: number = 0; 
-  constructor(private produitService: ProduitService) { }
+  isAuth: boolean; 
+  isAuthSub: any;
+  userId: string;
+  user: User;
+  submitCmd: boolean;
+
+  constructor(private produitService: ProduitService,
+              private auth: AuthService) { }
 
   ngOnInit() {
     this.loading = true; 
@@ -50,6 +60,24 @@ export class AfficherPanierComponent implements OnInit {
       
     }
     console.log(this.total);
+  }
+
+  commander(){
+    this.submitCmd = true; 
+    this.isAuthSub = this.auth.isAuth$.subscribe(
+      (auth) => {
+        //Vérifie si l'utilisateur est connecté 
+        if(auth == true){
+          this.isAuth = auth;
+          this.userId = this.auth.userId;
+        this.auth.getUserById(this.userId).then(
+          (user: User) => {
+            this.user = user;
+          }
+        );
+        }
+      }
+    );
   }
 
 }

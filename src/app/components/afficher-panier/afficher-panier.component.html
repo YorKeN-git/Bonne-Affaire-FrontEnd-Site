@@ -4,7 +4,13 @@
         <p class="text-center">Votre panier est actuellement vide !<button [routerLink]="['/acceuil']" routerLinkActive="router-link-active" class="btn btn-outline-info">Commencer mes achats</button></p>
     </div>
     <table class="table" *ngIf="!isPanierVide">
-        <caption><strong> <h3>Total : {{total}} €</h3></strong></caption>
+        <caption>
+            <strong> <h3>Total : {{total}} €</h3></strong> <button (click)="commander()" class="btn btn-info">Commander</button>
+            <div class="alert alert-info" role="alert" *ngIf="!isAuth && submitCmd">
+                <p class="text-center">Connectez-vous à votre compte pour commander !</p>
+            </div>
+        </caption>
+
         <thead>
             <tr>
                 <th scope="col">#</th>
