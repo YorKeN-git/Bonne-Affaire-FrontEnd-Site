@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Commande } from 'src/app/modeles/commande';
 import { Produit } from 'src/app/modeles/produits';
 import { User } from 'src/app/modeles/user';
 import { AuthService } from 'src/app/services/auth.service';
+import { CommandeService } from 'src/app/services/commande.service';
 import { ProduitService } from 'src/app/services/produit.service';
+import { ProduitsGrosElectromenagerComponent } from '../produits-gros-electromenager/produits-gros-electromenager.component';
 
 @Component({
   selector: 'app-afficher-panier',
@@ -24,9 +27,12 @@ export class AfficherPanierComponent implements OnInit {
   userId: string;
   user: User;
   submitCmd: boolean;
+  panierFinal: Produit[];
 
   constructor(private produitService: ProduitService,
-              private auth: AuthService) { }
+              private auth: AuthService,
+              private router: Router,
+              private commandeService: CommandeService) { }
 
   ngOnInit() {
     this.loading = true; 
@@ -59,7 +65,7 @@ export class AfficherPanierComponent implements OnInit {
       }
       
     }
-    console.log(this.total);
+    //console.log(this.total);
   }
 
   commander(){
@@ -75,6 +81,10 @@ export class AfficherPanierComponent implements OnInit {
             this.user = user;
           }
         );
+        //Transmet le panier final a commandeService
+        this.panierFinal = this.panier;
+        this.commandeService.majPanier(this.panierFinal, this.total);
+        this.router.navigate(['/Creation-Commande']);
         }
       }
     );

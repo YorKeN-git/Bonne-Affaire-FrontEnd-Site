@@ -1,0 +1,12 @@
+img {
+    width: 150px;
+    height: 150px;
+}
+
+table {
+    width: 100%;
+}
+
+#boutonPayer {
+    float: right;
+}
