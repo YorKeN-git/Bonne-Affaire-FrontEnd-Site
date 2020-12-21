@@ -26,15 +26,6 @@ export class AuthService {
           () => {
             this.messageCreationOK = "Votre compte à bien été crée ! Bienvenue parmis-nous !";
             resolve();
-            // this.connnexionUser(email, mdp).then(
-            //   () => {
-            //     resolve();
-            //   }
-            // ).catch(
-            //   (error) => {
-            //     reject(error);
-            //   }
-            // );
           },
           (error) => {
             reject(error);

@@ -1,5 +1,4 @@
 <div class="container">
-
     <mat-horizontal-stepper [linear]="isLinear" #stepper>
         <mat-step [stepControl]="coordonneeFacturationForm">
             <form [formGroup]="coordonneeFacturationForm">
@@ -39,7 +38,7 @@
         <mat-step [stepControl]="coordonneeLivraisonForm" label="Adresse de Livraison">
             <form [formGroup]="coordonneeLivraisonForm">
                 <div class="alert alert-info text-center" role="alert">
-                    <mat-checkbox class="example-margin" (change)="utiliserAdresseFacturation($event)">Utiliser l'adresse de facturation ?!</mat-checkbox>
+                    <mat-checkbox (change)="utiliserAdresseFacturation($event)">Utiliser l'adresse de facturation ?!</mat-checkbox>
                 </div>
                 <div class="row">
                     <div class="form-group col-md-6">
@@ -67,13 +66,16 @@
                 </div>
                 <div>
                     <button mat-button matStepperPrevious>Retour</button>
-                    <button mat-button matStepperNext>Suivant</button>
+                    <button mat-button matStepperNext [disabled]="!coordonneeLivraisonForm.valid">Suivant</button>
                 </div>
             </form>
         </mat-step>
         <mat-step>
             <ng-template matStepLabel>Validation de la commande</ng-template>
             <div class="container">
+                <mat-spinner *ngIf="loading" class="loader"></mat-spinner>
+                <div class="alert alert-success text-center" role="alert" *ngIf="creationCommandeOK">{{messageCreationCommandeOK}}</div>
+                <div class="alert alert-danger text-center" role="alert" *ngIf="creationCommandeNOK">{{messageCreationCommandeNOK}}</div>
                 <h3>Récapitulatif de votre commande :</h3>
                 <table>
                     <thead>
@@ -98,11 +100,15 @@
 
             <div>
                 <button mat-button matStepperPrevious>Retour</button>
-                <button type="button" class="btn btn-warning btn-lg" id="boutonPayer"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-credit-card" viewBox="0 0 16 16">
+                <div class="alert alert-danger text-center" role="alert">
+                    <mat-checkbox (change)="accepteFacturation($event)">En cochant cette case, j'accepte de régler le montant de {{totalAPayer}} €.</mat-checkbox>
+                </div>
+                <button type="button" class="btn btn-warning btn-lg" id="boutonPayer" (click)="validerCommande()" [disabled]="!isAccepteFacturation"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-credit-card" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v1h14V4a1 1 0 0 0-1-1H2zm13 4H1v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V7z"/>
                     <path d="M2 10a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1z"/>
                   </svg> Payer</button>
             </div>
+
         </mat-step>
     </mat-horizontal-stepper>
 </div>
